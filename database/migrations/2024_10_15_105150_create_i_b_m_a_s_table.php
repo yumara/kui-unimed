@@ -18,8 +18,7 @@ return new class extends Migration
             $table->string('study_program',64);
             $table->date('date_start');
             $table->date('date_end');
-            $table->enum('pembayaran', ['Mandiri', 'Sponsor', 'Beasiswa']);
-            $table->text('sponsor')->nullable();
+            $table->boolean('sponsor')->default(false);
             $table->enum('status', ['Mengupload File', 'Memeriksa', 'Diterima', 'Ditolak']);
             $table->text('file_passport')->nullable();
             $table->text('file_pasfoto')->nullable();
@@ -46,6 +45,15 @@ return new class extends Migration
             $table->string('user_id', 36);
             $table->foreign('ibma_id')->references('id')->on('ibma')->cascadeOnUpdate();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate();
+        });
+        Schema::create('ibma_sponsor', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('ibma_id');
+            $table->string('name',64);
+            $table->enum('type', ['Beasiswa', 'Sponsor']);
+            $table->text('file_sponsor');
+            $table->timestamps();
+            $table->foreign('ibma_id')->references('id')->on('ibma')->cascadeOnUpdate();
         });
     }
 
