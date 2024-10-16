@@ -16,7 +16,7 @@
                     </div><!--end col-->
                     <div class="col-auto">
                         @if($userData->isComplete())
-                        <a href="#" class="btn btn-primary btn-sm">
+                        <a href="{{ route('user.ibma.create')}}" class="btn btn-primary btn-sm">
                             <i class="las la-plus"></i>
                             Tambah
                         </a>
