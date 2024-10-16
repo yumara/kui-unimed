@@ -1,6 +1,6 @@
 <script src="{{ asset('libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{ asset('libs/simplebar/simplebar.min.js')}}"></script>
-
+<script src="{{ asset('libs/vanillajs-datepicker/js/datepicker-full.min.js') }}"></script>
 <script src="{{ asset('libs/apexcharts/apexcharts.min.js')}}"></script>
 <script src="{{ asset('data/stock-prices.js')}}"></script>
 <script src="{{ asset('libs/jsvectormap/js/jsvectormap.min.js')}}"></script>
