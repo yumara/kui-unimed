@@ -16,11 +16,11 @@ Route::middleware('auth')->group(function () {
     Route::controller(IBMAController::class)->group(function () {
         Route::get('/ibma', 'index')->name('user.ibma');
         Route::get('/ibma/new', 'createForm')->name('user.ibma.create');
+        Route::post('/ibma', 'store')->name('user.ibma.store');
         Route::get('/ibma/{id}', 'detail')->name('user.ibma.detail');
+        Route::put('/ibma/{id}', 'update')->name('user.ibma.update');
         Route::get('/ibma/{id}/edit', 'updateForm')->name('user.ibma.edit');
         Route::get('/ibma/{id}/upload', 'uploadForm')->name('user.ibma.upload');
-        Route::post('/ibma/{id}', 'store')->name('user.ibma.store');
-        Route::put('/ibma/{id}', 'update')->name('user.ibma.update');
         Route::delete('/ibma/{id}', 'delete')->name('user.ibma.delete');
     });
 });
