@@ -57,13 +57,28 @@ class UserDataRequest extends FormRequest
             "gender.required" => "Jenis Kelamin tidak boleh kosong",
             "gender.in" => "Jenis Kelamin tidak valid",
 
+            "place_birth.required" => "Tempat Lahir tidak boleh kosong",
+            "place_birth.string" => "Tempat Lahir tidak valid",
+            "place_birth.max" => "Tempat Lahir terlalu panjang (maks: 64 karakter)",
+
+            "date_birth.required" => "Tanggal Lahir Wajib Diisi",
+            "date_birth.date" => "Tanggal Lahir Tidak Valid",
+
+            "phone_number.required" => "Nomor Telepon tidak boleh kosong",
+            "phone_number.string" => "Nomor Telepon tidak valid",
+            "phone_number.max" => "Nomor Telepon terlalu panjang (maks: 20 karakter)",
+
             "email.required" => "Email tidak boleh kosong",
             "email.email" => "Email tidak valid",
             "email.max" => "Email terlalu panjang (max: 255 karakter)",
 
-            "password.required" => "Password tidak boleh kosong",
-            "password.string" => "Password tidak valid",
-            "password.min" => "Password yang anda masukkan terlalu lemah (min: 8 karakter)"
+            "address.string" => "Alamat tidak valid",
+            "city.string" => "Kota tidak valid",
+            "country.string" => "Negara tidak valid",
+            "citizenship.string" => "Kewarganegaraan tidak valid",
+            "occupation.string" => "Pekerjaan tidak valid",
+            "passport_id.string" => "Nomor Paspor tidak valid",
+            "study_program.string" => "Program Studi tidak valid",
         ];
     }
 }
