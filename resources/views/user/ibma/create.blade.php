@@ -17,14 +17,6 @@
                 </div>  <!--end row-->
             </div><!--end card-header-->
             <div class="card-body pt-0">
-                @if(session('message'))
-                    <div class="alert alert-success shadow-sm border-theme-white-2 mt-2" role="alert">
-                        <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-success rounded-circle mx-auto me-1">
-                            <i class="fas fa-check align-self-center mb-0 text-white "></i>
-                        </div>
-                        <strong>{{ session('message') }}</strong>
-                    </div>
-                @endif
                 @if($errors->any())
                     <div class="alert alert-danger shadow-sm border-theme-white-2 mt-2" role="alert">
                         <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1">
@@ -34,11 +26,12 @@
                     </div>
                 @endif
                 <form action="{{ route('user.ibma.store')}}" method="POST">
+                    @csrf
                     <input type="hidden" name="user_id" value="{{Auth::user()->id}}" />
                     <div class="row">
                         <div class="col-md-6 col-sm-12 mb-2">
                             <label>Program Studi</label>
-                            <input class="form-control  @error('study_program') is-invalid @enderror" type="text" name="study_program" value="{{ old('study_porgram') }}" required>
+                            <input class="form-control  @error('study_program') is-invalid @enderror" type="text" name="study_program" value="{{ old('study_program') }}" required>
                         </div>
                         <div class="col-md-6 col-sm-12 mb-2">
                             <label>Periode Belajar</label>
@@ -51,7 +44,7 @@
                     </div>
                     <div class="col-12">
                         <div class="form-check form-switch mb-2 mt-2">
-                            <input class="form-check-input" type="checkbox" name="sponsor" id="flexSwitchCheckDefault">
+                            <input class="form-check-input" type="checkbox" name="sponsor" id="flexSwitchCheckDefault" @checked(old('sponsor')) >
                             <label class="form-check-label" for="flexSwitchCheckDefault">Dibiayai oleh Sponsor / Beasiswa (Siapkan Surat Pernyataan Penerima Beasiswa / Sponsor)</label>
                         </div>
                     </div>
@@ -68,5 +61,5 @@
 
 @section('js')
     let elem=document.getElementById("DateRange");
-    new DateRangePicker(elem,{});
+    new DateRangePicker(elem,{format: 'yyyy-mm-dd'});
 @endsection

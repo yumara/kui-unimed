@@ -7,6 +7,14 @@
 
 
 <div class="row justify-content-center">
+    @if(session('message'))
+    <div class="alert alert-success shadow-sm border-theme-white-2 mt-2" role="alert">
+        <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-success rounded-circle mx-auto me-1">
+            <i class="fas fa-check align-self-center mb-0 text-white "></i>
+        </div>
+        <strong>{{ session('message') }}</strong>
+    </div>
+    @endif
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -16,7 +24,7 @@
                     </div><!--end col-->
                     <div class="col-auto">
                         @if($userData->isComplete())
-                        <a href="{{ route('user.ibma.create')}}" class="btn btn-primary btn-sm">
+                        <a href="{{ route('user.ibma.create')}}" class="btn btn-primary">
                             <i class="las la-plus"></i>
                             Tambah
                         </a>
@@ -52,6 +60,40 @@
                           </tr>
                         </thead>
                         <tbody>
+                            @foreach ($ibmas as $ibma)
+                                <tr>
+                                    <td>{{ $ibma->created_at }}</td>
+                                    <td>
+                                        <strong>Program Studi: {{ $ibma->study_program }}</strong><br>
+                                        @if ($ibma->sponsor)
+                                            Dibiayai Beasiswa / Sponsor
+                                        @else
+                                            Dibiayai Sendiri
+                                        @endif
+                                    </td>
+                                    <td>{{ $ibma->status }}</td>
+                                    <td>
+                                        <a href="{{ route('user.ibma.detail',$ibma->id)}}" class="btn btn-secondary btn-sm">
+                                            <i class="las la-eye"></i>
+                                            Detail
+                                        </a>
+                                        @if($ibma->status == "Mengupload File")
+                                        <a href="{{ route('user.ibma.update',$ibma->id)}}" class="btn btn-info btn-sm">
+                                            <i class="las la-pen"></i>
+                                            Edit Informasi
+                                        </a>
+                                        <a href="{{ route('user.ibma.update',$ibma->id)}}" class="btn btn-info btn-sm">
+                                            <i class="las la-pen"></i>
+                                            Upload File
+                                        </a>
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="las la-times"></i>
+                                            Batalkan
+                                        </button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                       </table>
                 </div>
