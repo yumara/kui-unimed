@@ -38,14 +38,14 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12 mb-2">
                             <label>Program Studi</label>
-                            <input class="form-control" type="text" name="study_program" value="{{ old('study_porgram') }}" required>
+                            <input class="form-control  @error('study_program') is-invalid @enderror" type="text" name="study_program" value="{{ old('study_porgram') }}" required>
                         </div>
                         <div class="col-md-6 col-sm-12 mb-2">
                             <label>Periode Belajar</label>
                             <div class="input-group" id="DateRange">
-                                <input type="text" name="date_start" value="{{ old('date_start') }}" class="form-control" placeholder="Tanggal Mulai" aria-label="StartDate">
+                                <input type="text" name="date_start" value="{{ old('date_start') }}" class="form-control  @error('date_start') is-invalid @enderror" placeholder="Tanggal Mulai" aria-label="StartDate">
                                 <span class="input-group-text">Sampai</span>
-                                <input type="text" name="date_end" value="{{ old('date_end') }}"  class="form-control rounded-end" placeholder="Tanggal Selesai" aria-label="EndDate">
+                                <input type="text" name="date_end" value="{{ old('date_end') }}"  class="form-control rounded-end  @error('date_end') is-invalid @enderror" placeholder="Tanggal Selesai" aria-label="EndDate">
                             </div>
                         </div>
                     </div>

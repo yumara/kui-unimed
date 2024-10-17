@@ -22,7 +22,30 @@ class IbmaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "study_program" => "required|string|max:64",
+            "date_start" => "required|date",
+            "date_end" => "required|date",
+            "sponsor" => "sometimes|boolean",
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            "study_program.required" => "Program Studi Wajib Diisi",
+            "study_program.string" => "Program Studi Tidak Valid",
+            "study_program.max" => "Program Studi terlalu panjang (Maks. 64 karakter)",
+
+            "date_start.required" => "Tanggal Mulai Wajib Diisi",
+            "date_start.date" => "Tanggal Mulai Tidak Valid",
+
+            "date_end.required" => "Tanggal Selesai Wajib Diisi",
+            "date_end.date" => "Tanggal Selesai Tidak Valid",
         ];
     }
 }
