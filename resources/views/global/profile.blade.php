@@ -32,9 +32,6 @@
                             <i class="fas fa-xmark align-self-center mb-0 text-white "></i>
                         </div>
                         <strong>Gagal perbarui data!</strong> Periksa kembali data Anda<br>
-                        @foreach($errors->all() as $error)
-                            {{ $error }} <br>
-                        @endforeach
                     </div>
                 @endif
                 <form action="
@@ -50,10 +47,10 @@
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Nama Lengkap</label>
                         <div class="col-lg-9 col-xl-8">
                             @if ($isAdmin)
-                                <input class="form-control" type="text" name="name" value="{{ Auth::user()->name }}" readonly>
+                                <input class="form-control" type="text" name="name" value="{{  Auth::user()->name }}" readonly>
                                 <span class="form-text text-muted font-12">Data terkoneksi dengan SSO UNIMED</span>
                             @else
-                                <input class="form-control" type="text" name="name" value="{{ Auth::user()->name }}" required>
+                                <input class="form-control @error('name') is-invalid @enderror" type="text" name="name" value="{{ old('name',Auth::user()->name ) }}" required>
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -79,16 +76,16 @@
                     <div class="form-group mb-3 row">
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Tempat Lahir</label>
                         <div class="col-lg-9 col-xl-8">
-                            <input class="form-control" type="text" name="place_birth" value="{{ $userData->place_birth }}" required>
+                            <input class="form-control @error('place_birth') is-invalid @enderror" type="text" name="place_birth" value="{{ old('place_birth',$userData->place_birth )  }}">
+                            @error('place_birth')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                        @error('place_birth')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
                     </div>
                     <div class="form-group mb-3 row">
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Tanggal Lahir</label>
                         <div class="col-lg-9 col-xl-8">
-                            <input class="form-control" type="date" name="date_birth" value="{{ $userData->date_birth->toDateString() }}" id="example-date-input" required>
+                            <input class="form-control @error('date_birth') is-invalid @enderror" type="date" name="date_birth" value="{{ $userData->date_birth == null ? old('date_birth',$userData->place_birth ) :  old('date_birth', $userData->date_birth->toDateString() ) }}" id="example-date-input" required>
                         </div>
                         @error('date_birth')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -99,8 +96,8 @@
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Nomor Telepon / HP</label>
                         <div class="col-lg-9 col-xl-8">
                             <div class="input-group">
-                                <span class="input-group-text"><i class="las la-phone"></i></span>
-                                <input type="text" class="form-control" name="phone_number" placeholder="08xxxxxxxxx" aria-describedby="basic-addon1" value="{{ $userData->phone_number }}">
+                                <span class="input-group-text @error('phone_number') is-invalid @enderror"><i class="las la-phone"></i></span>
+                                <input type="text" class="form-control" name="phone_number" placeholder="08xxxxxxxxx" aria-describedby="basic-addon1" value="{{ old('phone_number',$userData->phone_number ) }}">
                             </div>
                         </div>
                         @error('phone_number')
@@ -115,7 +112,7 @@
                                 @if ($isAdmin)
                                     <input class="form-control" type="text" name="email" value="{{ Auth::user()->email }}" readonly>
                                 @else
-                                    <input type="text" class="form-control" name="email" value="{{ Auth::user()->email }}" placeholder="Email" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email',Auth::user()->email )  }}" placeholder="Email" aria-describedby="basic-addon1">
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -130,7 +127,7 @@
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Alamat</label>
                         <div class="col-lg-9 col-xl-8">
                             <div class="input-group">
-                                <textarea class="form-control" name="address" rows="3" id="address">{{ $userData->address }}</textarea>
+                                <textarea class="form-control @error('address') is-invalid @enderror" name="address" rows="3" id="address">{{ old('address',$userData->address ) }}</textarea>
                                 @error('address')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -140,7 +137,7 @@
                     <div class="form-group mb-3 row">
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Kota</label>
                         <div class="col-lg-9 col-xl-8">
-                            <input class="form-control" type="text" name="city" value="{{ $userData->city }}">
+                            <input class="form-control @error('city') is-invalid @enderror" type="text" name="city" value="{{ old('city',$userData->city ) }}">
                             @error('city')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -149,7 +146,7 @@
                     <div class="form-group mb-3 row">
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Negara</label>
                         <div class="col-lg-9 col-xl-8">
-                            <input class="form-control" type="text" name="country" value="{{ $userData->country }}">
+                            <input class="form-control @error('country') is-invalid @enderror" type="text" name="country" value="{{ old('country',$userData->country ) }}">
                             @error('country')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -158,7 +155,7 @@
                     <div class="form-group mb-3 row">
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Kewarganegaraan</label>
                         <div class="col-lg-9 col-xl-8">
-                            <input class="form-control" type="text" name="citizenship" value="{{ $userData->citizenship }}">
+                            <input class="form-control @error('citizenship') is-invalid @enderror" type="text" name="citizenship" value="{{ old('citizenship',$userData->citizenship ) }}">
                             @error('citizenship')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -167,7 +164,7 @@
                     <div class="form-group mb-3 row">
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Pekerjaan</label>
                         <div class="col-lg-9 col-xl-8">
-                            <input class="form-control" type="text" name="occupation" value="{{ $userData->occupation }}">
+                            <input class="form-control @error('occupation') is-invalid @enderror" type="text" name="occupation" value="{{ old('occupation',$userData->occupation ) }}">
                             @error('occupation')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -176,7 +173,7 @@
                     <div class="form-group mb-3 row">
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Nomor Paspor</label>
                         <div class="col-lg-9 col-xl-8">
-                            <input class="form-control" type="text" name="passport_id" value="{{ $userData->passport_id }}">
+                            <input class="form-control @error('passport_id') is-invalid @enderror" type="text" name="passport_id" value="{{ old('passport_id',$userData->passport_id ) }}">
                             @error('passport_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -185,7 +182,7 @@
                     <div class="form-group mb-3 row">
                         <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Program Studi</label>
                         <div class="col-lg-9 col-xl-8">
-                            <input class="form-control" type="text" name="study_program" value="{{ $userData->study_program }}">
+                            <input class="form-control @error('study_program') is-invalid @enderror" type="text" name="study_program" value="{{ old('study_program',$userData->study_program ) }}">
                             @error('study_program')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
