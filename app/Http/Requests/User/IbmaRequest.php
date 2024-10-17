@@ -25,7 +25,7 @@ class IbmaRequest extends FormRequest
             "study_program" => "required|string|max:64",
             "date_start" => "required|date",
             "date_end" => "required|date",
-            "sponsor" => "sometimes|boolean",
+            "sponsor" => "sometimes",
         ];
     }
 
