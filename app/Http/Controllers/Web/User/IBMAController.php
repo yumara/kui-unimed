@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Models\IBMA;
+use App\Models\IbmaLog;
 use App\Http\Requests\User\IbmaRequest;
 use Carbon\Carbon;
 
