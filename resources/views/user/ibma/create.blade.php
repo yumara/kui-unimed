@@ -12,7 +12,12 @@
             <div class="card-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h4 class="card-title">Tambah Pengajuan Baru</h4>
+                        <h4 class="card-title">
+                            <a href="{{ route('user.ibma') }}" class="btn btn-light me-2">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                            Tambah Pengajuan Baru
+                        </h4>
                     </div><!--end col-->
                 </div>  <!--end row-->
             </div><!--end card-header-->
