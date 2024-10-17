@@ -86,7 +86,7 @@
                                             <i class="las la-pen"></i>
                                             Upload File
                                         </a>
-                                        <button type="button" class="btn btn-danger btn-sm">
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $ibma->id }})">
                                             <i class="las la-times"></i>
                                             Batalkan
                                         </button>
@@ -118,6 +118,22 @@ try{
     );
 }catch(e){
 
+}
+function confirmDelete(id){
+    Swal.fire({
+        title: "Anda Yakin?",
+        text: "Seluruh riwayat pengajuan anda termasuk dokumen yang sudah Anda upload akan ikut terhapus",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya, Saya Yakin",
+        cancelButtonText: "Batal",
+    }).then((e)=>{
+        if (e.isConfirmed) {
+            console.log(id);
+        }
+    });
 }
 @endsection
 @endif

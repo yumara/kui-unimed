@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="{{ asset('libs/jsvectormap/css/jsvectormap.min.css')}}">
     <link href="{{asset('libs/simple-datatables/style.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('libs/vanillajs-datepicker/css/datepicker.min.css')}}" rel="stylesheet" type="text/css" />
-     <!-- App css -->
+    <link href="{{asset('libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css">
+    <!-- App css -->
      <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
      <link href="{{ asset('css/icons.min.css')}}" rel="stylesheet" type="text/css" />
      <link href="{{ asset('css/app.min.css')}}" rel="stylesheet" type="text/css" />
