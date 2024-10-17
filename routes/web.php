@@ -25,5 +25,13 @@ Route::middleware(['auth', 'auth_keycloak', 'role:USER'])
     ->prefix('user')->group(function () {
         require __DIR__ . "/Web/User/routes.php";
     });
-
-Route::view('/', 'welcome')->name('index');
+Route::get('/', function () {
+    if (Auth::check()) {
+        if (Auth::user()->hasRole('ADMIN')) {
+            return redirect('/admin');
+        } elseif (Auth::user()->hasRole('USER')) {
+            return redirect('/user');
+        }
+    }
+    return redirect('/auth/login');
+});
