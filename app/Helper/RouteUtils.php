@@ -8,7 +8,7 @@ class RouteUtils
     {
         $user = auth()->user();
         if (!$user) {
-            return route('index');
+            return route('auth.login');
         }
 
         if ($user->hasRole('ADMIN')) {
