@@ -7,15 +7,15 @@
 
 
 <div class="row justify-content-center">
-    @if(session('message'))
-    <div class="alert alert-success shadow-sm border-theme-white-2 mt-2" role="alert">
-        <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-success rounded-circle mx-auto me-1">
-            <i class="fas fa-check align-self-center mb-0 text-white "></i>
-        </div>
-        <strong>{{ session('message') }}</strong>
-    </div>
-    @endif
     <div class="col-12">
+        @if(session('message'))
+        <div class="alert alert-success shadow-sm border-theme-white-2 mt-2" role="alert">
+            <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-success rounded-circle mx-auto me-1">
+                <i class="fas fa-check align-self-center mb-0 text-white "></i>
+            </div>
+            <strong>{{ session('message') }}</strong>
+        </div>
+        @endif
         <div class="card">
             <div class="card-header">
                 <div class="row align-items-center">
@@ -86,10 +86,14 @@
                                             <i class="las la-pen"></i>
                                             Upload File
                                         </a>
-                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $ibma->id }})">
-                                            <i class="las la-times"></i>
-                                            Batalkan
-                                        </button>
+                                        <form class="deleteData" action="{{ route('user.ibma.destroy', $ibma->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="las la-times"></i>
+                                                Batalkan
+                                            </button>
+                                        </form>
                                         @endif
                                     </td>
                                 </tr>
@@ -119,7 +123,9 @@ try{
 }catch(e){
 
 }
-function confirmDelete(id){
+function confirmDelete(e){
+    e.preventDefault();
+    var data = this;
     Swal.fire({
         title: "Anda Yakin?",
         text: "Seluruh riwayat pengajuan anda termasuk dokumen yang sudah Anda upload akan ikut terhapus",
@@ -131,9 +137,14 @@ function confirmDelete(id){
         cancelButtonText: "Batal",
     }).then((e)=>{
         if (e.isConfirmed) {
-            console.log(id);
+            data.submit();
         }
     });
 }
+var deleteForms = document.querySelectorAll('.deleteData');
+deleteForms.forEach(function(form) {
+    form.addEventListener('submit',confirmDelete);
+});
+
 @endsection
 @endif
