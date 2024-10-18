@@ -78,7 +78,7 @@
                                             Detail
                                         </a>
                                         @if($ibma->status == "Mengupload File")
-                                        <a href="{{ route('user.ibma.update',$ibma->id)}}" class="btn btn-info btn-sm">
+                                        <a href="{{ route('user.ibma.edit',$ibma->id)}}" class="btn btn-info btn-sm">
                                             <i class="las la-pen"></i>
                                             Edit Informasi
                                         </a>
