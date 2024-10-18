@@ -13,7 +13,7 @@
                 <div class="row align-items-center">
                     <div class="col">
                         <h4 class="card-title">
-                            <a href="{{ route('user.ibma') }}" class="btn btn-light me-2">
+                            <a href="{{ route('user.ibma') }}" class="btn btn-warning me-2">
                                 <i class="fas fa-angle-left"></i>
                             </a>
                             Tambah Pengajuan Baru
