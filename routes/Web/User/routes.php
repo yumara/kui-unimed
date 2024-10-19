@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/ibma/{id}', 'update')->name('user.ibma.update');
         Route::get('/ibma/{id}/edit', 'updateForm')->name('user.ibma.edit');
         Route::get('/ibma/{id}/upload', 'uploadForm')->name('user.ibma.upload');
+        Route::put('/ibma/{id}/upload', 'upload')->name('user.ibma.uplprocess');
         Route::delete('/ibma/{id}', 'destroy')->name('user.ibma.destroy');
     });
 });
