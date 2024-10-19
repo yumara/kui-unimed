@@ -19,14 +19,13 @@ return new class extends Migration
             $table->date('date_start');
             $table->date('date_end');
             $table->boolean('sponsor')->default(false);
-            $table->enum('status', ['Mengupload File', 'Memeriksa', 'Diterima', 'Ditolak']);
+            $table->enum('status', ['Mengupload File', 'Dalam Pemeriksaan', 'Diterima', 'Ditolak'])->default("Mengupload File");
             $table->text('file_passport')->nullable();
             $table->text('file_pasfoto')->nullable();
             $table->text('file_sk_sehat')->nullable();
             $table->text('file_soc')->nullable();
             $table->text('file_sofs')->nullable();
             $table->text('file_ijazah_transkrip')->nullable();
-            $table->text('file_sponsor')->nullable();
             $table->boolean('resend')->default(false);
             $table->text('reason_reject')->nullable();
             $table->string('admin_id', 36)->nullable();
@@ -62,7 +61,17 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('ibma_sponsor', function (Blueprint $table) {
+            $table->dropForeign('ibma_id');
+        });
+        Schema::table('ibma_log', function (Blueprint $table) {
+            $table->dropForeign(['user_id', 'ibma_id']);
+        });
+        Schema::dropIfExists('ibma_sponsor');
         Schema::dropIfExists('ibma_log');
+        Schema::table('ibma', function (Blueprint $table) {
+            $table->dropForeign(['user_id', 'admin_id']);
+        });
         Schema::dropIfExists('ibma');
     }
 };

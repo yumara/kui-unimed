@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('city',64)->nullable();
             $table->string('country',64)->nullable();
+            $table->string('zipcode',10)->nullable();
             $table->string('citizenship',64)->nullable();
             $table->string('occupation',64)->nullable();
             $table->string('phone_number', 20)->nullable();
