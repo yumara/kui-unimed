@@ -87,4 +87,17 @@ class IBMAController extends Controller
         IBMA::findOrFail($id)->delete();
         return redirect()->route('user.ibma')->with('message', 'Berhasil Hapus Pengajuan.');
     }
+    public function uploadForm(int $id) {
+        $user = auth()->user(); // Ambil user yang sedang login
+        $userData = $user->userData;
+        $ibma = IBMA::findOrFail($id);
+
+        return view('user.ibma.upload', [
+            "userData" => $userData,
+            "ibma" => $ibma,
+        ]);
+    }
+    public function upload(int $id): RedirectResponse {
+
+    }
 }
