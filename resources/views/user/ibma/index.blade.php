@@ -82,7 +82,7 @@
                                             <i class="las la-pen"></i>
                                             Edit Informasi
                                         </a>
-                                        <a href="{{ route('user.ibma.update',$ibma->id)}}" class="btn btn-info btn-sm">
+                                        <a href="{{ route('user.ibma.upload',$ibma->id)}}" class="btn btn-info btn-sm">
                                             <i class="las la-pen"></i>
                                             Upload File
                                         </a>
