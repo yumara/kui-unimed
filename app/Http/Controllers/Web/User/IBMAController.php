@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Models\IBMA;
 use App\Models\IbmaLog;
 use App\Http\Requests\User\IbmaRequest;
+use App\Http\Requests\User\IbmaUploadRequest;
 use Carbon\Carbon;
 
 class IBMAController extends Controller
@@ -97,7 +98,20 @@ class IBMAController extends Controller
             "ibma" => $ibma,
         ]);
     }
-    public function upload(int $id): RedirectResponse {
-
+    public function upload(IbmaUploadRequest $request, int $id): RedirectResponse{//
+        try {
+            $form = $request->validated();
+            $path = $request->file('file')->store('uploads/ibma/' .$form['field'].'/'. $id);
+            $fields = [
+                $form['field'] => $path,
+            ];
+            $ibma = IBMA::findOrFail($id)->update($fields);
+            return redirect()->route('user.ibma.upload',$id)->with('message', 'Berhasil Upload File.');
+            //return Response::make("Sukses", 200);
+            //return response()->json(['message' => 'File uploaded successfully!', 'path' => $path], 200);
+        } catch (ValidationException $e) {
+            throw $e;
+        }
+       // return response()->json(['message' => 'File upload failed!'], 500);
     }
 }
