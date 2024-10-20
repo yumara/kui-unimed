@@ -53,6 +53,7 @@ class UserData extends Model
             'place_birth' => 'Tempat Lahir',
             'city' => 'Kota',
             'country' => 'Negara',
+            'zipcode' => 'Kode Pos',
             'citizenship' => 'Kewarganegaraan',
             'passport_id' => 'Nomor Paspor',
             // Tambahkan field lain di sini sesuai kebutuhan
