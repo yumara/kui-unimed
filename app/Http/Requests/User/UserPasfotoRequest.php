@@ -11,7 +11,7 @@ class UserPasfotoRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->user();
+        return !empty(auth()->user());
     }
 
     /**
