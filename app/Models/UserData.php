@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 class UserData extends Model
 {
@@ -56,6 +57,7 @@ class UserData extends Model
             'zipcode' => 'Kode Pos',
             'citizenship' => 'Kewarganegaraan',
             'passport_id' => 'Nomor Paspor',
+            'file_pasfoto' => 'Pas Foto',
             // Tambahkan field lain di sini sesuai kebutuhan
         ];
 
@@ -67,5 +69,9 @@ class UserData extends Model
         }
 
         return empty($fieldsNotFilled);
+    }
+
+    function getPhotoWithNullcheck() : string {
+        return (!empty($this->file_pasfoto))? Storage::url('uploads/user/'.$this->user_id."/".$this->file_pasfoto)  : asset('images/users/empty.png');
     }
 }
