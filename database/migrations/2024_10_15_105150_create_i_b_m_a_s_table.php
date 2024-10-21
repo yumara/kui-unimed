@@ -61,15 +61,17 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('ibma_sponsor', function (Blueprint $table) {
-            $table->dropForeign('ibma_id');
+            $table->dropForeign('ibma_sponsor_ibma_id_foreign');
         });
         Schema::table('ibma_log', function (Blueprint $table) {
-            $table->dropForeign(['user_id', 'ibma_id']);
+            $table->dropForeign('ibma_log_user_id_foreign');
+            $table->dropForeign('ibma_log_ibma_id_foreign');
         });
         Schema::dropIfExists('ibma_sponsor');
         Schema::dropIfExists('ibma_log');
         Schema::table('ibma', function (Blueprint $table) {
-            $table->dropForeign(['user_id', 'admin_id']);
+            $table->dropForeign('ibma_admin_id_foreign');
+            $table->dropForeign('ibma_user_id_foreign');
         });
         Schema::dropIfExists('ibma');
     }
