@@ -198,6 +198,15 @@
                                 </div>
                             </div>
                             <div class="form-group mb-3 row">
+                                <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Kode Pos</label>
+                                <div class="col-lg-9 col-xl-8">
+                                    <input class="form-control @error('zipcode') is-invalid @enderror" type="text" name="zipcode" value="{{ old('zipcode',$userData->zipcode ) }}">
+                                    @error('zipcode')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group mb-3 row">
                                 <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Kewarganegaraan</label>
                                 <div class="col-lg-9 col-xl-8">
                                     <input class="form-control @error('citizenship') is-invalid @enderror" type="text" name="citizenship" value="{{ old('citizenship',$userData->citizenship ) }}">
