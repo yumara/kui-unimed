@@ -18,7 +18,6 @@ class IBMA extends Model
         'sponsor',
         'status',
         'file_passport',
-        'file_pasfoto',
         'file_sk_sehat',
         'file_soc',
         'file_sofs',
@@ -35,12 +34,11 @@ class IBMA extends Model
 
     public function isFileComplete() : bool {
         $fields = [
-            'file_passport' => 'Jenis Kelamin',
-            'file_pasfoto' => 'Alamat',
-            'file_sk_sehat' => 'Nomor Telepon',
-            'file_soc' => 'Tanggal Lahir',
-            'file_sofs' => 'Tempat Lahir',
-            'file_ijazah_transkrip' => 'Kota',
+            'file_passport' => 'Paspor',
+            'file_sk_sehat' => 'SK Sehat',
+            'file_soc' => 'Surat Pernyataan',
+            'file_sofs' => 'Surat Pernyataan Kesanggupan Pembayaran',
+            'file_ijazah_transkrip' => 'Ijazah & Transkrip',
             // Tambahkan field lain di sini sesuai kebutuhan
         ];
 
