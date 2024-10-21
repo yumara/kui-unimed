@@ -9,6 +9,22 @@
 
 @section('content')
     <div class="container-xxl">
+        @if(session('message'))
+            <div class="alert alert-success shadow-sm border-theme-white-2 mt-2" role="alert">
+                <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-success rounded-circle mx-auto me-1">
+                    <i class="fas fa-check align-self-center mb-0 text-white "></i>
+                </div>
+                <strong>{{ session('message') }}</strong>
+            </div>
+        @endif
+        @if($errors->any())
+            <div class="alert alert-danger shadow-sm border-theme-white-2 mt-2" role="alert">
+                <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1">
+                    <i class="fas fa-xmark align-self-center mb-0 text-white "></i>
+                </div>
+                <strong>Gagal perbarui data!</strong> Periksa kembali data Anda<br>
+            </div>
+        @endif
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <div class="card">
@@ -17,7 +33,7 @@
                     </div><!--end card-header-->
                     <div class="card-body pt-0 align-self-center ">
                         <div class="position-relative me-3">
-                            <img src="{{ asset('images/users/avatar-1.jpg') }}" alt="" height="150" class="rounded-circle">
+                            <img src="{{ $userData->getPhotoWithNullcheck() }}" alt="" height="150" class="rounded-circle">
                             <a href="#" class="thumb-md justify-content-center d-flex align-items-center bg-primary text-white rounded-circle position-absolute end-0 bottom-0 border border-3 border-card-bg" data-bs-toggle="modal" data-bs-target="#uploadModal">
                                 <i class="fas fa-camera"></i>
                             </a>
@@ -63,22 +79,6 @@
                         </div>  <!--end row-->
                     </div><!--end card-header-->
                     <div class="card-body pt-0">
-                        @if(session('message'))
-                            <div class="alert alert-success shadow-sm border-theme-white-2 mt-2" role="alert">
-                                <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-success rounded-circle mx-auto me-1">
-                                    <i class="fas fa-check align-self-center mb-0 text-white "></i>
-                                </div>
-                                <strong>{{ session('message') }}</strong>
-                            </div>
-                        @endif
-                        @if($errors->any())
-                            <div class="alert alert-danger shadow-sm border-theme-white-2 mt-2" role="alert">
-                                <div class="d-inline-flex justify-content-center align-items-center thumb-xs bg-danger rounded-circle mx-auto me-1">
-                                    <i class="fas fa-xmark align-self-center mb-0 text-white "></i>
-                                </div>
-                                <strong>Gagal perbarui data!</strong> Periksa kembali data Anda<br>
-                            </div>
-                        @endif
                         <form action="
                         @if ($isAdmin)
                             {{ route('admin.profile.update',$userData) }}
