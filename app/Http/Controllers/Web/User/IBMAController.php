@@ -101,9 +101,10 @@ class IBMAController extends Controller
     public function upload(IbmaUploadRequest $request, int $id): RedirectResponse{//
         try {
             $form = $request->validated();
+            $fileName = $request->file('file')->hashName();
             $path = $request->file('file')->store('uploads/ibma/' .$form['field'].'/'. $id);
             $fields = [
-                $form['field'] => $path,
+                $form['field'] => $fileName,
             ];
             $ibma = IBMA::findOrFail($id)->update($fields);
             return redirect()->route('user.ibma.upload',$id)->with('message', 'Berhasil Upload File.');
