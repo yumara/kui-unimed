@@ -10,6 +10,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'index')->name('admin.profile');
-        Route::post('/profile', 'store')->name('admin.profile.store');
+        Route::put('/profile/{id}', 'update')->name('admin.profile.store');
+        Route::put('/profile/{id}/upload', 'upload')->name('admin.profile.uploadimage');
     });
 });

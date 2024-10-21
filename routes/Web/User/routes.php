@@ -12,6 +12,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'index')->name('user.profile');
         Route::put('/profile/{id}', 'update')->name('user.profile.update');
+        Route::put('/profile/{id}/upload', 'upload')->name('user.profile.uploadimage');
     });
     Route::controller(IBMAController::class)->group(function () {
         Route::get('/ibma', 'index')->name('user.ibma');
