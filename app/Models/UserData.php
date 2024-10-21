@@ -72,6 +72,6 @@ class UserData extends Model
     }
 
     function getPhotoWithNullcheck() : string {
-        return (!empty($this->file_pasfoto))? Storage::url('uploads/user/'.$this->user_id."/".$this->file_pasfoto)  : asset('images/users/empty.png');
+        return (!empty($this->file_pasfoto))? route('files',["folder" => "user","id" => $this->user_id, "file" => $this->file_pasfoto])  : asset('images/users/empty.png');
     }
 }

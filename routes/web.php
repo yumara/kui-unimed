@@ -35,3 +35,12 @@ Route::get('/', function () {
     }
     return redirect('/auth/login');
 });
+Route::get('/files/{folder}/{id}/{file}', function ($folder,$id,$file) {
+    $path = storage_path('app/uploads/'.$folder."/".$id."/". $file);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->name('files');
