@@ -21,7 +21,6 @@ return new class extends Migration
             $table->boolean('sponsor')->default(false);
             $table->enum('status', ['Mengupload File', 'Dalam Pemeriksaan', 'Diterima', 'Ditolak'])->default("Mengupload File");
             $table->text('file_passport')->nullable();
-            $table->text('file_pasfoto')->nullable();
             $table->text('file_sk_sehat')->nullable();
             $table->text('file_soc')->nullable();
             $table->text('file_sofs')->nullable();

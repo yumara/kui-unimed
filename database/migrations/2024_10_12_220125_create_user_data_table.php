@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('phone_number', 20)->nullable();
             $table->string('passport_id', 36)->nullable();
             $table->string('study_program',64)->nullable();
+            $table->text('file_pasfoto')->nullable();
             $table->timestamps();
             $table->primary('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate();
